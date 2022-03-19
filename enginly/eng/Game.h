@@ -21,12 +21,15 @@ namespace eng {
 
 		void Update();
 		void Start();
+		void Init();
 		// User vars:
 		eng::Vec2i vlocity;
 	public:
 		Game(uint16_t windowW, uint16_t windowH , std::string title) : m_windowH(windowH), m_windowW(windowW) , m_title(title) , m_window(nullptr) , m_manger(nullptr){
-
+			Init();
 		}
+		sf::RenderWindow& getWindow() { return *m_window; }
 		void run(uint8_t fpsLimit);
+		ObjectManer* getmanger() const { return m_manger; }
 	};
 };

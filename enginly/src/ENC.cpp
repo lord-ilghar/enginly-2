@@ -8,46 +8,47 @@ void ObjectManer::Update()
 		i->Update();
 	}
 }
-void ObjectManer::Init()
-{
-	for (auto& i : m_objects) {
-		i->Init();
-	}
-}
+
+
 void ObjectManer::Start()
 {
 	for (auto& i : m_objects) {
 		i->Start();
 	}
 }
-std::shared_ptr<Object> ObjectManer::addObject()
+
+void ObjectManer::Draw()
 {
-	std::shared_ptr<Object> object = std::make_shared<Object>();
-	m_objects.push_back(object);
-	return object;
+	for (auto& i : m_objects) {
+		i->Draw();
+	}
 }
 
 void Object::Update()
 {
-	for (auto& i : m_componentsArray) {
-		i->Update();
-	}
-}
-void Object::Init()
-{
-	for (auto& i : m_componentsArray) {
-		i->Init();
-	}
-}
-void Object::Start()
-{
-	for (auto& i : m_componentsArray) {
-		i->Start();
+	for (uint32_t i = 0; i < MaxComponents; i++) {
+		if (m_componentCheck[i] == true) {
+			m_componentsArray[i]->Update();
+		}
+		else break;
 	}
 }
 
-template<typename T>
-inline void Object::addComponent()
+void Object::Start()
 {
-		
+	for (uint32_t i = 0; i < MaxComponents; i++) {
+		if (m_componentCheck[i] == true) {
+			m_componentsArray[i]->Start();
+		}
+		else break;
+	}
+}
+void Object::Draw()
+{
+	for (uint32_t i = 0; i < MaxComponents; i++) {
+		if (m_componentCheck[i] == true) {
+			m_componentsArray[i]->Draw();
+		}
+		else break;
+	}
 }

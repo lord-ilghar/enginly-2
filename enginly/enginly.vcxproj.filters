@@ -89,5 +89,14 @@
     <ClInclude Include="eng\ENC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eng\components\RectRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eng\components\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="userComponents\Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

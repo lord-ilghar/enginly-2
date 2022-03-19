@@ -9,7 +9,7 @@ using namespace eng;
 
 void eng::Game::Update()
 {
-    for (size_t i = 0; i < rainsAmount; i++)
+    /*for (size_t i = 0; i < rainsAmount; i++)
     {
         rains[i].setPosition(rains[i].getPosition().x, rains[i].getPosition().y + vlocity.y);
         m_window->draw(rains[i]);
@@ -21,14 +21,15 @@ void eng::Game::Update()
             );
         }
     }
+    */
+
+    m_manger->Update();
 }
+
 void eng::Game::Start()
 {
     vlocity.y = 4;
-    CPRINT(getComponentTypeID<Component3>());
-    CPRINT(getComponentTypeID<Component3>());
-
-    for (size_t i = 0; i < rainsAmount; i++)
+    /*for (size_t i = 0; i < rainsAmount; i++)
     {
         sf::RectangleShape shape;
         shape.setSize(sf::Vector2f(4, Rand::randInt(5 , 15)));
@@ -47,38 +48,43 @@ void eng::Game::Start()
         else if(randInt == 6) shape.setFillColor(sf::Color::Yellow);
         else shape.setFillColor(sf::Color::White);
         rains[i] = shape;
-    }
+    }*/
+    m_manger->Start();
+}
+
+void eng::Game::Init()
+{
+    m_window = new  sf::RenderWindow(sf::VideoMode(m_windowW, m_windowH), m_title);
+    m_manger = new ObjectManer(&getWindow());
 }
 
 void eng::Game::run(uint8_t fpsLimit)
 {
     // init
     srand((unsigned)time(NULL));
-    sf::RenderWindow window(sf::VideoMode(m_windowW, m_windowH), m_title);
-    m_window = &window;
-    ImGui::SFML::Init(window);
+    ImGui::SFML::Init(getWindow());
     sf::Clock deltaClock;
-    window.setFramerateLimit(fpsLimit);
-    m_manger = new ObjectManer(&window);
+    getWindow().setFramerateLimit(fpsLimit);
     // end init
     Start();
-    while (window.isOpen())
+    while (getWindow().isOpen())
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        while (getWindow().pollEvent(event))
         {
             ImGui::SFML::ProcessEvent(event);
             if (event.type == sf::Event::Closed)
-                window.close();
+                getWindow().close();
         }
-        ImGui::SFML::Update(window, deltaClock.restart());
+        ImGui::SFML::Update(getWindow(), deltaClock.restart());
         ImGui::Begin("Rect properties");
         ImGui::SliderInt("Velocity Y", &vlocity.y ,1 , 10);
         ImGui::End();
-        window.clear(sf::Color::Black); // Color background
+        getWindow().clear(sf::Color::Black); // Color background
         Update();
-        ImGui::SFML::Render(window);
-        window.display();
+        m_manger->Draw();
+        ImGui::SFML::Render(getWindow());
+        getWindow().display();
     }
     
     ImGui::SFML::Shutdown();

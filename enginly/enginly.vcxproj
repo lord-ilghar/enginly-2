@@ -179,6 +179,9 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="eng\Input.h" />
     <ClInclude Include="eng\Rand.h" />
+    <ClInclude Include="eng\components\RectRenderer.h" />
+    <ClInclude Include="eng\components\Transform.h" />
+    <ClInclude Include="userComponents\Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
