@@ -1,17 +1,25 @@
 #pragma once
 #include "../eng/ENC.h"
-#include "../eng/components/Transform.h"
-
+#include "../eng/Vector.h"
 
 class Test : public Component
 {
-	Transform* t;
+private:
+	sf::RenderWindow* w;
+	sf::RectangleShape r;
+	eng::Vec2f p;
+	float heading;
 public:
 	void Init() override {
-		t = &Parent->getComponent<Transform>();
+		w = Parent->window;
+		r.setFillColor(sf::Color::White);
+		r.setOrigin(sf::Vector2f(0 , 0));
+		p =  eng::Vec2f(0, 1);
 	}
 	void Update() override {
-		t->translate(eng::Vec2f(1 , 0));
+	}
+	void Draw() override {
+		w->draw(r);
 	}
 };
 
