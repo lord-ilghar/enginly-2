@@ -28,7 +28,6 @@ void eng::Game::Update()
 
 void eng::Game::Start()
 {
-    vlocity.y = 4;
     /*for (size_t i = 0; i < rainsAmount; i++)
     {
         sf::RectangleShape shape;
@@ -77,9 +76,6 @@ void eng::Game::run(uint8_t fpsLimit)
                 getWindow().close();
         }
         ImGui::SFML::Update(getWindow(), deltaClock.restart());
-        ImGui::Begin("Rect properties");
-        ImGui::SliderInt("Velocity Y", &vlocity.y ,1 , 10);
-        ImGui::End();
         getWindow().clear(sf::Color::Black); // Color background
         Update();
         m_manger->Draw();

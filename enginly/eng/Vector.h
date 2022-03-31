@@ -90,7 +90,7 @@ public:
 	//static T magnitude(Vector2<T> vector) { return std::sqrt(vector.x * vector.x + vector.y * vector.y); }
 	//static T sqMagnitude(Vector2<T> vector) { return (vector.x * vector.x + vector.y * vector.y); }
 	//static T distance(Vector2<T> Vector , Vector2<T> otherVector) { return magnitude(otherVector - Vector); }
-
+	
 	// utility functions :
 	T magnitude() { return std::sqrt(x * x + y * y); }
 	T distance(Vector2<T> otherVector) { return magnitude(otherVector - *this); }

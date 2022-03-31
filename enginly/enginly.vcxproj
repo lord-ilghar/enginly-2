@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="examples\Pong.cpp" />
     <ClCompile Include="src\ENC.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -162,9 +163,11 @@
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugTools\debug.h" />
+    <ClInclude Include="eng\Color.h" />
     <ClInclude Include="eng\ENC.h" />
     <ClInclude Include="eng\Game.h" />
     <ClInclude Include="eng\Vector.h" />
@@ -181,6 +184,10 @@
     <ClInclude Include="eng\Rand.h" />
     <ClInclude Include="eng\components\RectRenderer.h" />
     <ClInclude Include="eng\components\Transform.h" />
+    <ClInclude Include="eng\Texture.h" />
+    <ClInclude Include="eng\components\Physics.h" />
+    <ClInclude Include="userComponents\Ball.h" />
+    <ClInclude Include="userComponents\Platform.h" />
     <ClInclude Include="userComponents\Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

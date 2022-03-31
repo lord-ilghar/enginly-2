@@ -2,7 +2,7 @@
 #include "../debugTools/debug.h"
 
 
-void ObjectManer::Update()
+void eng::ObjectManer::Update()
 {
 	for (auto& i : m_objects) {
 		i->Update();
@@ -10,45 +10,44 @@ void ObjectManer::Update()
 }
 
 
-void ObjectManer::Start()
+void eng::ObjectManer::Start()
 {
 	for (auto& i : m_objects) {
 		i->Start();
 	}
 }
 
-void ObjectManer::Draw()
+void eng::ObjectManer::Draw()
 {
 	for (auto& i : m_objects) {
 		i->Draw();
 	}
 }
 
-void Object::Update()
+void eng::Object::Update()
 {
-	for (uint32_t i = 0; i < MaxComponents; i++) {
-		if (m_componentCheck[i] == true) {
+	for (auto& i : m_components) {
+		i->Update();
+		/*if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Update();
-		}
-		else break;
+		}*/
 	}
 }
 
-void Object::Start()
+void eng::Object::Start()
 {
 	for (uint32_t i = 0; i < MaxComponents; i++) {
 		if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Start();
 		}
-		else break;
 	}
 }
-void Object::Draw()
+void eng::Object::Draw()
 {
-	for (uint32_t i = 0; i < MaxComponents; i++) {
-		if (m_componentCheck[i] == true) {
+	for (auto& i : m_components) {
+		i->Update();
+		/*if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Draw();
-		}
-		else break;
+		}*/
 	}
 }

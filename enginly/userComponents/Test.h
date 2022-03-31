@@ -1,25 +1,30 @@
 #pragma once
 #include "../eng/ENC.h"
 #include "../eng/Vector.h"
+#include "../eng/Texture.h"
 
-class Test : public Component
+
+class Test : public eng::Component
 {
 private:
 	sf::RenderWindow* w;
-	sf::RectangleShape r;
-	eng::Vec2f p;
-	float heading;
+	sf::Sprite t;
+	sf::Texture texture;
+	eng::Postion* p;
 public:
 	void Init() override {
 		w = Parent->window;
-		r.setFillColor(sf::Color::White);
-		r.setOrigin(sf::Vector2f(0 , 0));
-		p =  eng::Vec2f(0, 1);
-	}
-	void Update() override {
+		p = &Parent->getComponent<eng::Postion>();
+		texture = eng::Texture::LoadTexture(
+			"C:/Users/HP/source/repos/enginly/enginly/res/1.jpg" 
+			, eng::Texture::Options::REPEATED 
+
+			);
+		t.setTexture(texture);
+		t.setPosition(p->getPostion().y, p->getPostion().x);
 	}
 	void Draw() override {
-		w->draw(r);
+		w->draw(t);
 	}
 };
 

@@ -26,3 +26,8 @@ bool eng::Input::KeyPress(sf::Keyboard::Key key)
 {
     return sf::Keyboard::isKeyPressed(key);
 }
+
+bool eng::Input::MousePress(MouseButton button)
+{
+	return sf::Mouse::isButtonPressed(button);
+}

@@ -7,9 +7,12 @@ namespace eng {
 		enum class Axis {
 			Horizontal , Vertical
 		};
+		using MouseButton = sf::Mouse::Button;
+
 		static sf::RenderWindow& m_window;
 		static int8_t getAxis(Axis axie);
 		static bool KeyPress(sf::Keyboard::Key key);
+		static bool MousePress(MouseButton button);
 	};
 }
 
