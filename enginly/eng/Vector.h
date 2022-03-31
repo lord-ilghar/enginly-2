@@ -96,6 +96,8 @@ public:
 	T distance(Vector2<T> otherVector) { return magnitude(otherVector - *this); }
 	T sqMagnitude() { return (x * x + y * y); }
 	T heading() { return atan2(x, y) * 180 / PI; }
+	Vector2<T> round() { return Vector2<T>(std::round(x), std::round(y)); }
+	Vector2<T> floor() { return Vector2<T>(std::floor(x), std::floor(y)); }
 	void normalize() {
 		T mag = magnitude();
 		if (mag != 0) *this = ((*this) * (1 / mag));

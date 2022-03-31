@@ -2,6 +2,10 @@
 #include <cmath>
 #include <ctime>
 #include "../ENC.h"
+
+// NOTE : THIS Component is in its very early stages 
+// and it you should not use it
+
 namespace eng {
 	class RigitBody : public eng::Component
 	{
@@ -9,17 +13,38 @@ namespace eng {
 		eng::Vec2f vlocity;
 		eng::Vec2f acc;
 		float_t mass;
-		eng::Postion& postion;
+		eng::Postion* postion;
+
+		void checkEdges() {
+			eng::Vec2f pos = postion->getPostion();
+			if (pos.y + postion->getSize().y >= Parent->window->getSize().y) {
+				vlocity.y *= 0;
+				postion->setPostion(pos.x  , Parent->window->getSize().y - postion->getSize().y);
+			}
+		};
 
 	public:
+		RigitBody(float_t mass = 1.f) { 
+			if (mass <= 0) {
+				throw "mass can not be less than 0";
+			}
+			this->mass = mass;
+		}
+
 		void Init() override {
-			postion = Parent->getComponent<eng::Postion>();
+			postion = &Parent->getComponent<eng::Postion>();
 		}
+
 		void applyForce(eng::Vec2f force) {
-			acc + force;
+			acc += force / mass;
 		}
+
 		void Update() override {
-			postion.setPostion(postion.getPostion() + vlocity);
+			checkEdges();
+			applyForce(eng::Vec2f(0, .3));
+			vlocity += acc;
+			acc.set(0, 0);			
+			postion->setPostion(postion->getPostion() + vlocity);
 		}
 	};
 };

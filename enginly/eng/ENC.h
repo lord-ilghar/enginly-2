@@ -114,7 +114,7 @@ public:
 		postion.y = y;
 	}
 	void setPostion(eng::Vec2f pos) {
-		postion = pos;
+		postion =  pos.floor();
 	}
 	void setPostion() {
 		postion = eng::Vec2f(0.f, 0.f);

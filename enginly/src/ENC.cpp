@@ -45,7 +45,7 @@ void eng::Object::Start()
 void eng::Object::Draw()
 {
 	for (auto& i : m_components) {
-		i->Update();
+		i->Draw();
 		/*if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Draw();
 		}*/
