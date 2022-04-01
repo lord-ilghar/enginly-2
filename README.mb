@@ -1,0 +1,34 @@
+
+# Enginly 
+
+a C++11 Game Engine
+
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+
+
+## Authors
+
+- [ilghar moradi](https://www.github.com/lord-ilghar)
+
+
+## Features
+
+- entity component system (ENC)
+- Random numbers
+- Full Vector support
+- Input system
+- physics engine **coming soon!**
+- Audio support **coming soon!**
+- Noise generation  **coming soon!**
+- User interface (UI) **coming soon!**
+- json and loading text files **coming soon!**
+
+
+## Usage/Examples
+
+you can visit Examples forlder for examples!
+
+
+## Support
+
+For support, email aylqarm@gmail.com.

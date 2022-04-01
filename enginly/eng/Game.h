@@ -19,16 +19,16 @@ namespace eng {
 		std::string m_title;
 		sf::RenderWindow* m_window;
 		ObjectManer* m_manger;
+		float_t deltaTime = 0;
 
 		void Update();
 		void Start();
 		void Init();
 	public:
-		Game(uint16_t windowW, uint16_t windowH , std::string title) : m_windowH(windowH), m_windowW(windowW) , m_title(title) , m_window(nullptr) , m_manger(nullptr){
-			Init();
-		}
+		Game(uint16_t windowW, uint16_t windowH , std::string title) : m_windowH(windowH), m_windowW(windowW) , m_title(title) , m_window(nullptr) , m_manger(nullptr){Init();}
 		sf::RenderWindow& getWindow() { return *m_window; }
-		void run(uint8_t fpsLimit);
+		void run();
+		void setFPSLimit(uint8_t fpsLimit) {getWindow().setFramerateLimit(fpsLimit);}
 		ObjectManer* getmanger() const { return m_manger; }
 	};
 };

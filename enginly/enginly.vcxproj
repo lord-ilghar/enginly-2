@@ -170,6 +170,7 @@
     <ClInclude Include="eng\Color.h" />
     <ClInclude Include="eng\ENC.h" />
     <ClInclude Include="eng\Game.h" />
+    <ClInclude Include="eng\Time.h" />
     <ClInclude Include="eng\Vector.h" />
     <ClInclude Include="imgui\imconfig-SFML.h" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -186,9 +187,13 @@
     <ClInclude Include="eng\components\Transform.h" />
     <ClInclude Include="eng\Texture.h" />
     <ClInclude Include="eng\components\Physics.h" />
+    <ClInclude Include="userComponents\Test2.h" />
     <ClInclude Include="userComponents\Ball.h" />
     <ClInclude Include="userComponents\Platform.h" />
     <ClInclude Include="userComponents\Test.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.mb" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

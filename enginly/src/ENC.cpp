@@ -2,9 +2,10 @@
 #include "../debugTools/debug.h"
 
 
-void eng::ObjectManer::Update()
+void eng::ObjectManer::Update(float_t deltaTime)
 {
 	for (auto& i : m_objects) {
+		i->setDeltaTime(deltaTime);
 		i->Update();
 	}
 }

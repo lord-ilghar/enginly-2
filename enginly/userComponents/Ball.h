@@ -30,7 +30,8 @@ public:
 
 
 		p = &Parent->getComponent<eng::Postion>();
-		transform = &Parent->addComponent<eng::Transform>();
+		Parent->addComponent<eng::Transform>();
+		transform = &Parent->getComponent<eng::Transform>();
 		rc.setFillColor(sf::Color::White);
 		rc.setSize(sf::Vector2f(p->getSize().x, p->getSize().y));
 	}

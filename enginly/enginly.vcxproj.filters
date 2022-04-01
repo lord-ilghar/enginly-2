@@ -119,5 +119,14 @@
     <ClInclude Include="eng\components\Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eng\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="userComponents\Test2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.mb" />
   </ItemGroup>
 </Project>

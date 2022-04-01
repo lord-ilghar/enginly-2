@@ -33,6 +33,7 @@ private:
 	std::bitset<MaxComponents> m_componentCheck;
 	std::vector<std::unique_ptr<Component>> m_components;
 	std::unordered_map<std::string , bool> tags;
+	float_t deltaTime;
 public:
 	sf::RenderWindow* window;
 	ObjectManer* manager;
@@ -44,6 +45,8 @@ public:
 	//seters & geters
 	void setTage(std::string newTag) {tags[newTag] = 1;}
 	bool checkTag(std::string tag) {return (tags.find(tag) != tags.end());}
+	float_t getDeltaTime() { return deltaTime; }
+	void setDeltaTime(float_t time) {deltaTime = time;}
 
 	template <typename T , typename... Params>
 	Object* addComponent(Params&&... params) {
@@ -74,7 +77,7 @@ private:
 	sf::RenderWindow* m_window;
 public:
 	ObjectManer(sf::RenderWindow* window) :m_window(window){};
-	void Update();
+	void Update(float_t deltaTime);
 	void Start();
 	void Draw();
 	Object& addObject(eng::Vec2f pos, eng::Vec2f size) {
@@ -90,6 +93,7 @@ private:
 	std::vector<std::unique_ptr<Object>> m_objects;
 };
 
+//Component Template
 class Component {
 protected:
 	// Component utility functions
@@ -100,6 +104,11 @@ public:
 	virtual void Start() {}
 	virtual void Draw() {}
 };
+
+
+
+
+
 
 class Postion : public Component
 {

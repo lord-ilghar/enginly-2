@@ -14,7 +14,6 @@ namespace eng {
 		eng::Vec2f acc;
 		float_t mass;
 		eng::Postion* postion;
-
 		void checkEdges() {
 			eng::Vec2f pos = postion->getPostion();
 			if (pos.y + postion->getSize().y >= Parent->window->getSize().y) {
