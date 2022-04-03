@@ -17,6 +17,8 @@ private:
 	eng::Vec2f v;
 	Ball* b;
 	eng::Postion* ballP;
+	eng::AudioManager* mg;
+
 public:
 	Platfrom(eng::Object* o) :object(o){
 	}
@@ -24,6 +26,11 @@ public:
 		v.y = 5;
 		w = Parent->window;
 		p = &Parent->getComponent<eng::Postion>();
+		mg = &Parent->getComponent<eng::AudioManager>();
+
+		mg->addSound("C:/Users/HP/source/repos/enginly/enginly/res/hit-pong.wav", "hit");
+
+
 		transform = &Parent->getComponent<eng::Transform>();
 		rc.setSize(sf::Vector2f(p->getSize().x, p->getSize().y));
 		rc.setFillColor(sf::Color::White);
@@ -47,6 +54,7 @@ public:
 				(p->getPostion().x == ballp.x ||
 				p->getPostion().x == ballp.x + ballP->getSize().x)
 				) {
+				mg->getSound("hit").play();
 				if (Parent->checkTag("1")) {
 					b->c = "1";
 				}

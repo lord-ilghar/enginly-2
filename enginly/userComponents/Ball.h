@@ -3,6 +3,7 @@
 #include "../eng/Vector.h"
 #include "../eng/Rand.h"
 #include "../eng/components/Transform.h"
+#include "../eng/components/AudioManager.h"
 
 class Ball : public eng::Component {
 	eng::Postion* p;
@@ -11,11 +12,14 @@ class Ball : public eng::Component {
 	sf::Text t2;
 	eng::Transform* transform;
 	sf::Font f;
+	eng::AudioManager* mg;
 	int score1 = 0, score2 = 0;
+	bool soundPlayed; 
 public:
 	std::string c = " none ";
 	eng::Vec2f vlocity;
 	void Init() override {
+		soundPlayed = false;
 		if (!f.loadFromFile("C:/Users/HP/Downloads/Compressed/imgui-master/imgui-master/misc/fonts/Roboto-Medium.ttf")) throw;
 		t.setFillColor(sf::Color::White);
 		t.setPosition( (Parent->window->getSize().x / 4), 10.f);
@@ -30,6 +34,9 @@ public:
 
 
 		p = &Parent->getComponent<eng::Postion>();
+		mg = &Parent->getComponent<eng::AudioManager>();
+		mg->addSound( "C:/Users/HP/source/repos/enginly/enginly/res/score-pong.wav"  , "score")->addSound( "C:/Users/HP/source/repos/enginly/enginly/res/hit-pong.wav"  , "hit");
+
 		Parent->addComponent<eng::Transform>();
 		transform = &Parent->getComponent<eng::Transform>();
 		rc.setFillColor(sf::Color::White);
@@ -38,10 +45,12 @@ public:
 
 	void score() {
 		vlocity = eng::Vec2f(0, 0);
+		if(!soundPlayed) mg->getSound("score").play() ;
+		soundPlayed = true;
 		if (eng::Input::KeyPress(sf::Keyboard::Enter)) {
 			p->setPostion(eng::Vec2f(Parent->window->getSize().x / 2, Parent->window->getSize().y / 2));
 			vlocity = eng::Vec2f(4, 4);
-
+			soundPlayed = false;
 			if (c == "1") {
 				score1++;
 			}
@@ -64,8 +73,10 @@ public:
 		if (v.y >= Parent->window->getSize().y) {
 			p->setPostion(v.x ,Parent->window->getSize().y - p->getSize().y);
 			vlocity.y = -vlocity.y;
+			mg->getSound("hit").play();
 		}
 		if (v.y <= 0) {
+			mg->getSound("hit").play();
 			p->setPostion(v.x , p->getSize().y)	;
 			vlocity.y = -vlocity.y;
 		}

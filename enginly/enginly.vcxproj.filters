@@ -125,8 +125,11 @@
     <ClInclude Include="userComponents\Test2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eng\components\AudioManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.mb" />
+    <None Include="..\README.md" />
   </ItemGroup>
 </Project>

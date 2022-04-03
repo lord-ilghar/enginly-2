@@ -166,6 +166,7 @@
     <ClCompile Include="src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="eng\components\AudioManager.h" />
     <ClInclude Include="debugTools\debug.h" />
     <ClInclude Include="eng\Color.h" />
     <ClInclude Include="eng\ENC.h" />
@@ -193,7 +194,7 @@
     <ClInclude Include="userComponents\Test.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\README.mb" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

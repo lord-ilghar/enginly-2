@@ -22,6 +22,7 @@ a C++11 Game Engine
 - Noise generation  **coming soon!**
 - User interface (UI) **coming soon!**
 - json and loading text files **coming soon!**
+- Animations **coming soon!**
 
 
 ## Usage/Examples
