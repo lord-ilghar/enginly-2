@@ -12,7 +12,6 @@ class Ball : public eng::Component {
 	sf::Text t2;
 	eng::Transform* transform;
 	sf::Font f;
-	eng::AudioManager* mg;
 	int score1 = 0, score2 = 0;
 	bool soundPlayed; 
 public:
@@ -34,9 +33,6 @@ public:
 
 
 		p = &Parent->getComponent<eng::Postion>();
-		mg = &Parent->getComponent<eng::AudioManager>();
-		mg->addSound( "C:/Users/HP/source/repos/enginly/enginly/res/score-pong.wav"  , "score")->addSound( "C:/Users/HP/source/repos/enginly/enginly/res/hit-pong.wav"  , "hit");
-
 		Parent->addComponent<eng::Transform>();
 		transform = &Parent->getComponent<eng::Transform>();
 		rc.setFillColor(sf::Color::White);
@@ -45,7 +41,7 @@ public:
 
 	void score() {
 		vlocity = eng::Vec2f(0, 0);
-		if(!soundPlayed) mg->getSound("score").play() ;
+		if(!soundPlayed) eng::AudioManager::getSound("score").play() ;
 		soundPlayed = true;
 		if (eng::Input::KeyPress(sf::Keyboard::Enter)) {
 			p->setPostion(eng::Vec2f(Parent->window->getSize().x / 2, Parent->window->getSize().y / 2));
@@ -73,10 +69,10 @@ public:
 		if (v.y >= Parent->window->getSize().y) {
 			p->setPostion(v.x ,Parent->window->getSize().y - p->getSize().y);
 			vlocity.y = -vlocity.y;
-			mg->getSound("hit").play();
+			eng::AudioManager::getSound("hit").play();
 		}
 		if (v.y <= 0) {
-			mg->getSound("hit").play();
+			eng::AudioManager::getSound("hit").play();
 			p->setPostion(v.x , p->getSize().y)	;
 			vlocity.y = -vlocity.y;
 		}

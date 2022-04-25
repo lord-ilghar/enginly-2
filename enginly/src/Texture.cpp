@@ -1,6 +1,6 @@
 #include "..\eng\Texture.h"
 
-sf::Texture eng::Texture::LoadTexture(const char* path, Texture::Options options)
+sf::Texture& eng::Texture::LoadTexture(const char* path, Texture::Options options)
 {
 	sf::Texture* texture = new sf::Texture();
 	if (!texture->loadFromFile(path))

@@ -7,11 +7,14 @@ namespace eng {
 	private:
 		sf::RectangleShape shape;
 		eng::Postion* p;
+		sf::Color color;
 	public:
+		RectRenderer(sf::Color color) : color(color) , p(nullptr) , shape(sf::RectangleShape()) {}
+
 		void Init() {
 			p = &Parent->getComponent<eng::Postion>();
-			shape.setFillColor(sf::Color::Red);
-			shape.setSize(sf::Vector2f(100, 100));
+			shape.setFillColor(color);
+			shape.setSize(sf::Vector2f(p->getSize().x, p->getSize().y));
 		}
 
 		void Update() override {

@@ -15,7 +15,9 @@ int main()
     eng::Game* g = new eng::Game(800, 400, "test");
     eng::ObjectManer* manger = g->getmanger();
     auto& ball = manger->addObject(eng::Vec2f(g->getWindow().getSize().x / 2, g->getWindow().getSize().y / 2), eng::Vec2f(10.f, 10.f));
-    ball.addComponent<AudioManager>();
+    eng::AudioManager::addSound("C:/Users/HP/source/repos/enginly/enginly/res/hit-pong.wav", "hit");
+    eng::AudioManager::addSound("C:/Users/HP/source/repos/enginly/enginly/res/score-pong.wav", "score");
+
     ball.addComponent<Ball>();
     auto& platform1 = manger->addObject(eng::Vec2f(
         20.f,
@@ -24,12 +26,10 @@ int main()
         g->getWindow().getSize().x - 20.f,
         g->getWindow().getSize().y / 2.f), eng::Vec2f(5, 60));
     platform1.setTage("1");
-    platform1.addComponent<eng::AudioManager>();
     platform1.addComponent<eng::Transform>();
     platform1.addComponent<Platfrom>(&ball);
 
     platform2.setTage("2");
-    platform2.addComponent<eng::AudioManager>();
     platform2.addComponent<eng::Transform>();
     platform2.addComponent<Platfrom>(&ball);
     g->run();

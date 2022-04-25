@@ -7,6 +7,6 @@ namespace eng {
 		{
 			SMOOTH , REPEATED
 		};
-		sf::Texture LoadTexture(const char* path, Texture::Options options = Options::SMOOTH);
+		sf::Texture& LoadTexture(const char* path, Texture::Options options = Options::SMOOTH);
 	};
 };

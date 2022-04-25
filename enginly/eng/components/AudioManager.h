@@ -4,12 +4,12 @@
 #include <SFML/Audio.hpp>
 
 namespace eng {
-	class AudioManager : public eng::Component
+	class AudioManager
 	{
 	private:
-		std::unordered_map<std::string, sf::Sound> Audios;
+		static std::unordered_map<std::string, sf::Sound> Audios;
 	public:
-		AudioManager* addSound(std::string path, std::string key) {
+		static AudioManager* addSound(std::string path, std::string key) {
 			sf::SoundBuffer* buffer = new sf::SoundBuffer();
 			sf::Sound sound;
 			if (!(*buffer).loadFromFile(path)) {
@@ -18,11 +18,12 @@ namespace eng {
 			}
 			sound.setBuffer(*buffer);
 			Audios[key] = sound;
-			return this;
 		}
-		sf::Sound& getSound(std::string key) { return Audios[key]; }
+		static sf::Sound& getSound(std::string key) { return Audios[key]; }
 		void removeSound(std::string key) {
 			delete Audios[key].getBuffer();
+			Audios.erase(key);
+
 		}
-	};
+	};	
 }
