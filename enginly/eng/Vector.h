@@ -58,9 +58,29 @@ public:
 		this->y /= c2.y;
 		return *this;
 	}
+
+
 	bool operator == (Vector2<T> const& c2)
 	{
 		return (x == c2.x && y == c2.y);
+	}
+	bool operator > (Vector2<T> const& c2)
+	{
+		return (x > c2.x && y > c2.y);
+	}
+	bool operator < (Vector2<T> const& c2)
+	{
+		return (x < c2.x && y < c2.y);
+	}
+
+	bool operator >= (Vector2<T> const& c2)
+	{
+		return (x >= c2.x && y >= c2.y);
+	}
+
+	bool operator <= (Vector2<T> const& c2)
+	{
+		return (x <= c2.x && y <= c2.y);
 	}
 
 	Vector2<T> operator * (T c)

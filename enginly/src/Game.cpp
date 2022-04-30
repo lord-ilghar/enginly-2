@@ -66,7 +66,7 @@ void eng::Game::run()
                 getWindow().close();
         }
         ImGui::SFML::Update(getWindow(), deltaClock_Imgui.restart());
-        getWindow().clear(sf::Color::Black); // Color background
+        getWindow().clear(sf::Color::Cyan); // Color background
         time[1] = deltaClock.getElapsedTime().asSeconds();
         float fps = (1.f / ( time[1] - time[0]));
         fpsText.setString("FPS:" + std::to_string((int)fps));
