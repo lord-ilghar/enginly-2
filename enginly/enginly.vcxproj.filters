@@ -140,6 +140,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
-    <None Include="Test.json" />
   </ItemGroup>
 </Project>

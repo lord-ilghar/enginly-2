@@ -13,16 +13,16 @@ a C++11 Game Engine for making simple 2D games
 
 ## Features
 
-- entity component system (ENC)
+- entity component system (ECS)
 - Random numbers
 - Full Vector support
 - Input system
 - Audio support
 - Animations 
+- json and loading text files
 - physics engine **coming soon!**
 - Noise generation  **coming soon!**
 - User interface (UI) **coming soon!**
-- json and loading text files **coming soon!**
 
 
 ## Usage/Examples

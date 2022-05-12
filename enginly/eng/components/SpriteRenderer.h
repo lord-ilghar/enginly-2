@@ -18,7 +18,6 @@ namespace eng {
 			m_parts = parts;
 			texture.loadFromFile(path.c_str());
 			sprite.setTexture(texture);
-			CPRINT(parts.toString().c_str());
 			for (size_t y = 0; y < texture.getSize().y / parts.y; y++) {
 				std::vector<sf::IntRect> rc;
 				for (rsize_t x = 0; x < texture.getSize().x / parts.x; x++ ) {

@@ -27,6 +27,8 @@ class Object;
 class Component;
 class Postion;
 
+
+// object template
 class Object {
 private:
 	std::array<Component*, MaxComponents> m_componentsArray;
@@ -35,7 +37,6 @@ private:
 	std::unordered_map<std::string , bool> tags;
 	float_t deltaTime;
 public:
-	Object(const Object& p1) = delete;
 	sf::RenderWindow* window;
 	ObjectManer* manager;
 
@@ -47,7 +48,7 @@ public:
 	void setTage(std::string newTag) {tags[newTag] = 1;}
 	bool checkTag(std::string tag) {return (tags.find(tag) != tags.end());}
 	float_t getDeltaTime() { return deltaTime; }
-	//void setDeltaTime(float_t time) {deltaTime = time;}
+	void setDeltaTime(float_t time) {deltaTime = time;}
 
 	template <typename T , typename... Params>
 	Object* addComponent(Params&&... params) {
@@ -86,7 +87,7 @@ public:
 		std::unique_ptr<Object> uPtr{ object };
 		object->window = m_window;
 		object->manager = this;
-		m_objects.push_back(std::move(uPtr));
+		m_objects.emplace_back(std::move(uPtr));
 		object->addComponent<Postion>(pos , size);
 		return *object;
 	}
@@ -106,9 +107,7 @@ public:
 protected:
 	// Component utilitys
 	int deltaTime() {return Parent->getDeltaTime();}
-	eng::Object* inislizeObject() {
-		return &Parent->manager->addObject({ 0 , 0 } , {1, 1});
-	}
+	eng::Object* initializeObject(eng::Vec2f pos , eng::Vec2f size) {return &Parent->manager->addObject(pos , size);}
 
 	template<typename T>
 	T* getComponent() {return &Parent->getComponent<T>();}

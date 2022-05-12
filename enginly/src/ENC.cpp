@@ -4,34 +4,40 @@
 
 void eng::ObjectManer::Update(float_t deltaTime)
 {
-	for (auto& i : m_objects) {
-		//i->setDeltaTime(deltaTime);
-		i->Update();
+	ImGui::Begin("Manger Props");
+
+	ImGui::Text("Object amount: %d", m_objects.size());
+
+	ImGui::End();
+
+
+	for (int i = 0; i < m_objects.size(); i++) {
+		m_objects[i]->setDeltaTime(deltaTime);
+		m_objects[i]->Update();
 	}
 }
 
 
 void eng::ObjectManer::Start()
 {
-	for (auto& i : m_objects) {
-		i->Start();
+	for (int i = 0; i < m_objects.size(); i++) {
+		m_objects[i]->Start();
 	}
 }
 
 void eng::ObjectManer::Draw()
 {
-	for (auto& i : m_objects) {
-		i->Draw();
+	for (int i = 0; i < m_objects.size(); i++) {
+		m_objects[i]->Draw();
 	}
 }
 
 void eng::Object::Update()
 {
-	for (auto& i : m_components) {
-		i->Update();
-		/*if (m_componentCheck[i] == true) {
+	for (uint32_t i = 0; i < MaxComponents; i++) {
+		if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Update();
-		}*/
+		}
 	}
 }
 
@@ -45,10 +51,9 @@ void eng::Object::Start()
 }
 void eng::Object::Draw()
 {
-	for (auto& i : m_components) {
-		i->Draw();
-		/*if (m_componentCheck[i] == true) {
+	for (uint32_t i = 0; i < MaxComponents; i++) {
+		if (m_componentCheck[i] == true) {
 			m_componentsArray[i]->Draw();
-		}*/
+		}
 	}
 }
