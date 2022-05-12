@@ -5,7 +5,7 @@
 void eng::ObjectManer::Update(float_t deltaTime)
 {
 	for (auto& i : m_objects) {
-		i->setDeltaTime(deltaTime);
+		//i->setDeltaTime(deltaTime);
 		i->Update();
 	}
 }

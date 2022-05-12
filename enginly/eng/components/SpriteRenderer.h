@@ -35,6 +35,8 @@ namespace eng {
 
 		void Init() override {
 			p = &Parent->getComponent<eng::Postion>();
+			sprite.setScale(std::floor(p->getSize().x / (texture.getSize().x / m_parts.x)),
+				std::floor(p->getSize().y / (texture.getSize().y / m_parts.y)));
 		}
 
 		sf::Sprite getSprite() { return sprite; }
@@ -47,8 +49,8 @@ namespace eng {
 			sprite.setTextureRect(rects[y][x]);
 		}
 		
-		void flipX() {fliped.x = !fliped.x;}
-		void flipY() {fliped.y = !fliped.y;}
+		void flipX(bool check) {fliped.x = check;}
+		void flipY(bool check) {fliped.y = check;}
 
 	eng::Vec2i getSliceAmount() {
 		return m_parts;
@@ -56,11 +58,22 @@ namespace eng {
 
 		void Update() override {
 			sprite.setPosition(p->getPostion().x, p->getPostion().y);
+				sprite.setOrigin(
+					(fliped.x ? 1 : 0) *
+					sprite.getLocalBounds().width,
+					(fliped.y ? 1 : 0) *
+					sprite.getLocalBounds().height
+					);
+			sprite.setScale( 
+				(fliped.x ? -1 : 1) *
+				std::floor(p->getSize().x / (texture.getSize().x / m_parts.x)),
+				(fliped.y ? -1 : 1) *
+				std::floor(p->getSize().y / (texture.getSize().y / m_parts.y))
+				);
 			//TODO : ADD ROTAION!
 			//sprite.setRotation(p->)
 			/*
 			if (fliped.x && !fliped.y) {
-				sprite.setScale(-p->getSize().x / (texture.getSize().x / m_parts.x),
 				p->getSize().y / (texture.getSize().y / m_parts.y));
 			}else if (fliped.y && !fliped.x) {
 				sprite.setScale(p->getSize().x / (texture.getSize().x / m_parts.x),
@@ -73,7 +86,7 @@ namespace eng {
 
 			}
 			*/
-			sprite.setScale(3, 3);
+			//sprite.setScale(3, 3);
 			Parent->window->draw(sprite);
 		}
 

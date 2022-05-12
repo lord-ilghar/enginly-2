@@ -134,8 +134,12 @@
     <ClInclude Include="eng\components\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="userComponents\Test3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+    <None Include="Test.json" />
   </ItemGroup>
 </Project>

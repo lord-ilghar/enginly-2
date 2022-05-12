@@ -35,6 +35,7 @@ private:
 	std::unordered_map<std::string , bool> tags;
 	float_t deltaTime;
 public:
+	Object(const Object& p1) = delete;
 	sf::RenderWindow* window;
 	ObjectManer* manager;
 
@@ -46,7 +47,7 @@ public:
 	void setTage(std::string newTag) {tags[newTag] = 1;}
 	bool checkTag(std::string tag) {return (tags.find(tag) != tags.end());}
 	float_t getDeltaTime() { return deltaTime; }
-	void setDeltaTime(float_t time) {deltaTime = time;}
+	//void setDeltaTime(float_t time) {deltaTime = time;}
 
 	template <typename T , typename... Params>
 	Object* addComponent(Params&&... params) {
@@ -95,14 +96,24 @@ private:
 
 //Component Template
 class Component {
-protected:
-	// Component utility functions
 public:
 	Object* Parent;
+
 	virtual void Update() {}
 	virtual void Init() {}
 	virtual void Start() {}
 	virtual void Draw() {}
+protected:
+	// Component utilitys
+	int deltaTime() {return Parent->getDeltaTime();}
+	eng::Object* inislizeObject() {
+		return &Parent->manager->addObject({ 0 , 0 } , {1, 1});
+	}
+
+	template<typename T>
+	T* getComponent() {return &Parent->getComponent<T>();}
+
+
 };
 
 
@@ -118,12 +129,12 @@ private:
 	float rotaion;
 public:
 	Postion(eng::Vec2f pos , eng::Vec2f size) : postion(pos) , size(size) , rotaion(0) {}
-	void setPostion(int32_t x, int32_t y) {
+	void setPostion(float x, float y) {
 		postion.x = x;
 		postion.y = y;
 	}
 	void setPostion(eng::Vec2f pos) {
-		postion =  pos.floor();
+		postion =  pos;
 	}
 	void setPostion() {
 		postion = eng::Vec2f(0.f, 0.f);

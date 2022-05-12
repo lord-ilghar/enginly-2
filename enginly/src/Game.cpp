@@ -22,7 +22,6 @@ void eng::Game::Start()
 void eng::Game::Init()
 {
     m_window = new  sf::RenderWindow(sf::VideoMode(m_windowW, m_windowH), m_title);
-    m_window->setVerticalSyncEnabled(true);
     m_manger = new ObjectManer(&getWindow());
 }
 
@@ -66,7 +65,7 @@ void eng::Game::run()
                 getWindow().close();
         }
         ImGui::SFML::Update(getWindow(), deltaClock_Imgui.restart());
-        getWindow().clear(sf::Color::Cyan); // Color background
+        getWindow().clear(sf::Color::Black); // Color background
         time[1] = deltaClock.getElapsedTime().asSeconds();
         float fps = (1.f / ( time[1] - time[0]));
         fpsText.setString("FPS:" + std::to_string((int)fps));

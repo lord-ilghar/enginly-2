@@ -1,7 +1,7 @@
 
 # Enginly 
 
-a C++11 Game Engine
+a C++11 Game Engine for making simple 2D games
 
 ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
@@ -17,12 +17,12 @@ a C++11 Game Engine
 - Random numbers
 - Full Vector support
 - Input system
+- Audio support
+- Animations 
 - physics engine **coming soon!**
-- Audio support **coming soon!**
 - Noise generation  **coming soon!**
 - User interface (UI) **coming soon!**
 - json and loading text files **coming soon!**
-- Animations **coming soon!**
 
 
 ## Usage/Examples

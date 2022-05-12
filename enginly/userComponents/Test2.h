@@ -20,9 +20,9 @@ class Test2 : public eng::Component
 
 public:
 	void Init() override {
-		sp = &Parent->getComponent<eng::SprieRenderer>();
-		mg = &Parent->getComponent<eng::AnimationManger>();
-		ts = &Parent->getComponent<eng::Transform>();
+		sp = getComponent<eng::SprieRenderer>();
+		mg = getComponent<eng::AnimationManger>();
+		ts = getComponent<eng::Transform>();
 			
 		sp->setRenderRect(0, 0);
 
@@ -39,12 +39,13 @@ public:
 		if (!mg->isAnimationPlaying("fire")) {
 			if (Input::KeyPress(sf::Keyboard::D)) {
 				mg->PlaySingleAnimation("walk");
-				ts->translate(4, 0);
+				ts->translate(200 * Parent->getDeltaTime(), 0);
+				sp->flipX(false);
 			}
 			else if (Input::KeyPress(sf::Keyboard::A)) {
 				mg->PlaySingleAnimation("walk");
-				ts->translate(-4, 0);
-				sp->flipX(); // TODO : MAKE A FLIPING FUNCTION
+				ts->translate(-200 * Parent->getDeltaTime(), 0);
+				sp->flipX(true);
 			}
 			else {
 				mg->PlaySingleAnimation("idel");
