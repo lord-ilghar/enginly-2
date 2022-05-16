@@ -14,6 +14,7 @@ int main()
 {
     eng::Game* g = new eng::Game(800, 400, "test");
     eng::ObjectManer* manger = g->getmanger();
+    g->setFPSLimit(60);
     auto& ball = manger->addObject(eng::Vec2f(g->getWindow().getSize().x / 2, g->getWindow().getSize().y / 2), eng::Vec2f(10.f, 10.f));
     eng::AudioManager::addSound("C:/Users/HP/source/repos/enginly/enginly/res/hit-pong.wav", "hit");
     eng::AudioManager::addSound("C:/Users/HP/source/repos/enginly/enginly/res/score-pong.wav", "score");
@@ -34,4 +35,5 @@ int main()
     platform2.addComponent<Platfrom>(&ball);
     g->run();
     return 0;
-}*/
+}
+*/

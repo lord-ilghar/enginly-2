@@ -6,6 +6,7 @@ namespace eng {
 		static int normalize(int number) {
 			return std::min(std::max(number, 0), 255);
 		}
+		RGB(){}
 		RGB(uint8_t red, uint8_t green, uint8_t blue) {
 			r = normalize((int)red);
 			b = normalize((int)green);

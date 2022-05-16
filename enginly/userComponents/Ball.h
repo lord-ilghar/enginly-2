@@ -14,6 +14,10 @@ class Ball : public eng::Component {
 	sf::Font f;
 	int score1 = 0, score2 = 0;
 	bool soundPlayed; 
+private:
+	void pickRandomDiration() {
+		vlocity = eng::Vec2f(4, 4) * eng::Vec2f::RandomDiraction();
+	}
 public:
 	std::string c = " none ";
 	eng::Vec2f vlocity;
@@ -45,7 +49,7 @@ public:
 		soundPlayed = true;
 		if (eng::Input::KeyPress(sf::Keyboard::Enter)) {
 			p->setPostion(eng::Vec2f(Parent->window->getSize().x / 2, Parent->window->getSize().y / 2));
-			vlocity = eng::Vec2f(4, 4);
+			pickRandomDiration();
 			soundPlayed = false;
 			if (c == "1") {
 				score1++;
@@ -56,9 +60,8 @@ public:
 			c = "none";
 		}
 	}
-
 	void Start() {
-		vlocity = eng::Vec2f(4, 4);
+		pickRandomDiration();
 	}
 	void Update() override {
 		t.setString(std::to_string(score1));

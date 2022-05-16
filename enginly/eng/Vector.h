@@ -105,6 +105,9 @@ public:
 	static Vector2<T> Down() { return Vector2<T>(0, -1); }
 	static Vector2<T> Left() { return Vector2<T>(-1, 0); }
 	static Vector2<T> Right() { return Vector2<T>(1, 0); }
+	static Vector2<T> RandomDiraction() {
+		return Vector2<T>(eng::Rand::Int(0, 2) == 0 ? 1 : -1, eng::Rand::Int(0, 2) == 0 ? 1 : -1);
+	}
 	static Vector2<float> RandomUnitVector() { return Vector2<float>(eng::Rand::random(), eng::Rand::random()); }
 
 	//static T magnitude(Vector2<T> vector) { return std::sqrt(vector.x * vector.x + vector.y * vector.y); }

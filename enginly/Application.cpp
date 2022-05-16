@@ -22,6 +22,7 @@ int main() {
 	e.addComponent<eng::SprieRenderer>(
 		"C:/Users/HP/source/repos/enginly/enginly/res/2.png",
 		eng::Vec2i(10, 10))->addComponent<AnimationManger>()->addComponent<eng::Transform>()->addComponent<Test2>();
-		*/
+	*/
+
 	g->run();
 }

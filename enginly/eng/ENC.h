@@ -22,8 +22,8 @@ unsigned int inline getComponentTypeID() noexcept {
 	static unsigned int typeID = getComponentID();
 	return typeID;
 }
-class ObjectManer;
 class Object;
+class ObjectManer;
 class Component;
 class Postion;
 
@@ -36,9 +36,12 @@ private:
 	std::vector<std::unique_ptr<Component>> m_components;
 	std::unordered_map<std::string , bool> tags;
 	float_t deltaTime;
+	bool isActive = true;
 public:
-	sf::RenderWindow* window;
 	ObjectManer* manager;
+	sf::RenderWindow* window;
+	bool getIsActive() { return isActive; }
+	void destroy();
 
 	void Update();
 	void Start();
@@ -46,7 +49,7 @@ public:
 
 	//seters & geters
 	void setTage(std::string newTag) {tags[newTag] = 1;}
-	bool checkTag(std::string tag) {return (tags.find(tag) != tags.end());}
+	bool checkTag(std::string tag) { return (tags.find(tag) != tags.end());}
 	float_t getDeltaTime() { return deltaTime; }
 	void setDeltaTime(float_t time) {deltaTime = time;}
 
@@ -77,8 +80,13 @@ class ObjectManer
 {
 private:
 	sf::RenderWindow* m_window;
+	eng::Vec2i m_simulationDistance;
+	bool isAlive;
+
+
 public:
-	ObjectManer(sf::RenderWindow* window) :m_window(window){};
+
+	ObjectManer(sf::RenderWindow* window, eng::Vec2i simulationDistance = { 200 , 200 }) :m_window(window) , m_simulationDistance(simulationDistance){};
 	void Update(float_t deltaTime);
 	void Start();
 	void Draw();
@@ -90,6 +98,14 @@ public:
 		m_objects.emplace_back(std::move(uPtr));
 		object->addComponent<Postion>(pos , size);
 		return *object;
+	}
+	void refresh() {
+		m_objects.erase(
+			std::remove_if(std::begin(m_objects), std::end(m_objects),
+				[](const std::unique_ptr<Object>& objects) { return !objects->getIsActive(); }
+			),// remove if
+			std::end(m_objects)
+		); // erase
 	}
 private:
 	std::vector<std::unique_ptr<Object>> m_objects;
@@ -111,7 +127,7 @@ protected:
 
 	template<typename T>
 	T* getComponent() {return &Parent->getComponent<T>();}
-
+	void destroy() { Parent->destroy(); }
 
 };
 

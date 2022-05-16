@@ -4,7 +4,7 @@
 #include "../ENC.h"
 
 // NOTE : THIS Component is in its very early stages 
-// and it you should not use it
+// and you should`t use it
 
 namespace eng {
 	class RigitBody : public eng::Component

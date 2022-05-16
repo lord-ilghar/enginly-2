@@ -28,7 +28,7 @@ void eng::Game::Init()
 void eng::Game::run()
 {
     // init
-    srand((unsigned)time(NULL));
+    eng::Rand::SetSeed((unsigned)time(NULL));
     ImGui::SFML::Init(getWindow());
 
     //delta time calculation
@@ -64,6 +64,8 @@ void eng::Game::run()
             if (event.type == sf::Event::Closed)
                 getWindow().close();
         }
+
+
         ImGui::SFML::Update(getWindow(), deltaClock_Imgui.restart());
         getWindow().clear(sf::Color::Black); // Color background
         time[1] = deltaClock.getElapsedTime().asSeconds();
