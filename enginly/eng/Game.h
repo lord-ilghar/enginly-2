@@ -9,6 +9,7 @@
 #include "Color.h"
 #include "Input.h"
 #include "Rand.h"
+#include "Vector.h"
 
 #include <vector>
 

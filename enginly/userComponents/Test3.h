@@ -4,7 +4,6 @@
 #include "../eng/Input.h"
 #include "../eng/Rand.h"
 
-
 class Test4 : public eng::Component {
 	eng::Transform* t;
 	eng::Postion* p;
@@ -12,7 +11,7 @@ class Test4 : public eng::Component {
 	sf::RectangleShape rc;
 	eng::Vec2f vloc;
 	eng::RGB color;
-	uint8_t opacity;
+	int32_t opacity;
 
 public:
 	void Init() override{
@@ -22,14 +21,17 @@ public:
 		opacity = eng::Rand::Int(0 , 256);
 		int rand = eng::Rand::Int(0, 2);
 		int rand2 = eng::Rand::Int(0, 2);
-		vloc = Vec2f::RandomUnitVector() * 150 * Vec2f(rand == 0 ?  -1 : 1 , rand2 == 0 ? -1 : 1);
+		vloc = eng::Vec2f::RandomUnitVector() * 150 * eng::Vec2f::RandomDiraction();
 		color = eng::Rand::Color();
 	}
 
 	void Update() override {
 		t->translate(vloc * Parent->getDeltaTime());
 		opacity--;
-		if (opacity <= 0) {
+	}
+
+	void LightUpdate() override {
+		if (opacity <= 0 || !isParentInWindowVeiw()) {
 			Parent->destroy();
 		}
 	}
@@ -44,8 +46,11 @@ public:
 };
 
 class Test3 : public eng::Component {
+	eng::Vec2f size;
 public:
+	Test3(eng::Vec2f size) : size(size)  {
 
+	}
 	void Init() override {
 	}
 
@@ -55,7 +60,7 @@ public:
 			initializeObject({ 
 				(float)sf::Mouse::getPosition(*Parent->window).x ,
 				(float)sf::Mouse::getPosition(*Parent->window).y
-				}, { 5 , 5 })
+				}, size)	
 				->addComponent<eng::Transform>()
 				->addComponent<Test4>();
 		}

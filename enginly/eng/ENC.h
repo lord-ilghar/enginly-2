@@ -46,6 +46,7 @@ public:
 	void Update();
 	void Start();
 	void Draw();
+	void LightUpdate();
 
 	//seters & geters
 	void setTage(std::string newTag) {tags[newTag] = 1;}
@@ -86,10 +87,12 @@ private:
 
 public:
 
-	ObjectManer(sf::RenderWindow* window, eng::Vec2i simulationDistance = { 200 , 200 }) :m_window(window) , m_simulationDistance(simulationDistance){};
+	void Draw();
 	void Update(float_t deltaTime);
 	void Start();
-	void Draw();
+
+
+	ObjectManer(sf::RenderWindow* window, eng::Vec2i simulationDistance = { 200 , 200 }) :m_window(window) , m_simulationDistance(simulationDistance){};
 	Object& addObject(eng::Vec2f pos, eng::Vec2f size) {
 		Object* object = new Object();
 		std::unique_ptr<Object> uPtr{ object };
@@ -117,13 +120,16 @@ public:
 	Object* Parent;
 
 	virtual void Update() {}
+	virtual void LightUpdate() {}
 	virtual void Init() {}
 	virtual void Start() {}
 	virtual void Draw() {}
 protected:
-	// Component utilitys
+	// Component utilites
 	int deltaTime() {return Parent->getDeltaTime();}
 	eng::Object* initializeObject(eng::Vec2f pos , eng::Vec2f size) {return &Parent->manager->addObject(pos , size);}
+	bool isParentInWindowVeiw();
+
 
 	template<typename T>
 	T* getComponent() {return &Parent->getComponent<T>();}

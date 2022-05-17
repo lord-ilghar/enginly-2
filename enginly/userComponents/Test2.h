@@ -29,7 +29,6 @@ public:
 		mg->addAnimation("idel", { 0 , 0}, { 9 ,  0}, 100);
 		mg->addAnimation("fire", { 0 , 3}, { 9 ,  3}, 100);
 		mg->addAnimation("ready", { 0 , 1}, { 9 ,  1}, 100);
-		mg->addAnimation("walk", { 0 , 2}, { 9 ,  2}, 100);
 	}
 
 	void Update() override {

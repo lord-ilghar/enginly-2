@@ -154,7 +154,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="examples\Animation.cpp" />
     <ClCompile Include="examples\Pong.cpp" />
+    <ClCompile Include="examples\Removing_Objects.cpp" />
     <ClCompile Include="src\ENC.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Game.cpp" />
