@@ -17,42 +17,42 @@ public:
 		:x(0), y(0) {}
 
 	// operator Overloads:
-	Vector2<T> operator + (Vector2<T> const& c2)
+	Vector2<T> operator + (Vector2<T> const& c2) const
 	{
 		return Vector2<T>(x + c2.x, y + c2.y);
 	}
 
-	Vector2<T> operator * (Vector2<T> const& c2)
+	Vector2<T> operator * (Vector2<T> const& c2) const
 	{
 		return Vector2<T>(x * c2.x, y * c2.y);
 	}
-	Vector2<T> operator % (Vector2<T> const& c2)
+	Vector2<T> operator % (Vector2<T> const& c2) const
 	{
 		return Vector2<T>(x % c2.x, y % c2.y);
 	}
-	Vector2<T> operator - (Vector2<T> const& c2)
+	Vector2<T> operator - (Vector2<T> const& c2) const
 	{
 		return Vector2<T>(x - c2.x, y - c2.y);
 	}
-	Vector2<T>& operator -= (Vector2<T> const& c2)
+	Vector2<T> operator -= (Vector2<T> const& c2)
 	{
 		this->x -= c2.x;
 		this->y -= c2.y;
 		return *this;
 	}
-	Vector2<T>& operator += (Vector2<T> const& c2)
+	Vector2<T> operator += (Vector2<T> const& c2)
 	{
 		this->x += c2.x;
 		this->y += c2.y;
 		return *this;
 	}
-	Vector2<T>& operator *= (Vector2<T> const& c2)
+	Vector2<T> operator *= (Vector2<T> const& c2)
 	{
 		this->x *= c2.x;
 		this->y *= c2.y;
 		return *this;
 	}
-	Vector2<T>& operator /= (Vector2<T> const& c2)
+	Vector2<T> operator /= (Vector2<T> const& c2)
 	{
 		this->x /= c2.x;
 		this->y /= c2.y;
@@ -60,42 +60,42 @@ public:
 	}
 
 
-	bool operator == (Vector2<T> const& c2)
+	bool operator == (Vector2<T> const& c2) const
 	{
 		return (x == c2.x && y == c2.y);
 	}
-	bool operator > (Vector2<T> const& c2)
+	bool operator > (Vector2<T> const& c2) const
 	{
 		return (x > c2.x && y > c2.y);
 	}
-	bool operator < (Vector2<T> const& c2)
+	bool operator < (Vector2<T> const& c2) const
 	{
 		return (x < c2.x && y < c2.y);
 	}
 
-	bool operator >= (Vector2<T> const& c2)
+	bool operator >= (Vector2<T> const& c2) const
 	{
 		return (x >= c2.x && y >= c2.y);
 	}
 
-	bool operator <= (Vector2<T> const& c2)
+	bool operator <= (Vector2<T> const& c2) const
 	{
 		return (x <= c2.x && y <= c2.y);
 	}
 
-	Vector2<T> operator * (T c)
+	Vector2<T> operator * (T c) const
 	{
 		return Vector2<T>(x * c, y * c);
 	}
-	Vector2<T> operator - (T c)
+	Vector2<T> operator - (T c) const
 	{
 		return Vector2<T>(x - c, y - c);
 	}
-	Vector2<T> operator / (T c)
+	Vector2<T> operator / (T c) const
 	{
 		return Vector2<T>(x / c, y / c);
 	}
-	Vector2<T> operator + (T c)
+	Vector2<T> operator + (T c) const
 	{
 		return Vector2<T>(x + c, y + c);
 	}
@@ -115,12 +115,12 @@ public:
 	//static T distance(Vector2<T> Vector , Vector2<T> otherVector) { return magnitude(otherVector - Vector); }
 	
 	// utility functions :
-	T magnitude() { return std::sqrt(x * x + y * y); }
-	T distance(Vector2<T> otherVector) { return magnitude(otherVector - *this); }
-	T sqMagnitude() { return (x * x + y * y); }
-	T heading() { return atan2(x, y) * 180 / PI; }
-	Vector2<T> round() { return Vector2<T>(std::round(x), std::round(y)); }
-	Vector2<T> floor() { return Vector2<T>(std::floor(x), std::floor(y)); }
+	T magnitude() const { return std::sqrt(x * x + y * y); }
+	T distance(Vector2<T> otherVector) const { return magnitude(otherVector - *this); }
+	T sqMagnitude() const { return (x * x + y * y); }
+	T heading() const  { return atan2(x, y) * 180 / PI; }
+	Vector2<T>& round() const { return Vector2<T>(std::round(x), std::round(y)); }
+	Vector2<T>& floor() const { return Vector2<T>(std::floor(x), std::floor(y)); }
 	void normalize() {
 		T mag = magnitude();
 		if (mag != 0) *this = ((*this) * (1 / mag));
@@ -137,7 +137,7 @@ public:
 		x = m * std::cos(deg);
 		y = m * std::sin(deg);
 	}
-	void limit(T l) { this->x = std::min(this->x, l); }
+	void limit(Vector2<T> limit) { this->x = std::min(this->x, limit.x); this->y = std::min(this->y, limit.y);}
 };
 typedef eng::Vector2<float> Vec2f;
 typedef eng::Vector2<int> Vec2i;

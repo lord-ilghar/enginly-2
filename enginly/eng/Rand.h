@@ -7,16 +7,17 @@ namespace eng{
 	class Rand {
 	public:
 		static float random() {return (float)rand() / (float)RAND_MAX;}
-		static int Int(int min, int max) {return (min + (rand() % max));}
-		static void SetSeed(int seed) {srand(seed);}
+		static int Int(const int min, const int max) {return (min + (rand() % max));}
+		static int Int(const int max) {return ((rand() % max));}
+		static void SetSeed(const int seed) {srand(seed);}
 		template<typename T>
-		static T Find(std::vector<T> list) {return list[randInt(0, list.size())];}
+		static T Find(const std::vector<T>& list) {return list[randInt(list.size())];}
 		template<typename T , int size>
-		static T Find(std::array<T ,size> list) {return list[randInt(0, size)];}
+		static T Find(const std::array<T ,size>& list) {return list[randInt(size)];}
 
 		template<typename T , int size>
-		static T Find(T list[]) {return list[randInt(0, size)];}
-		static RGB Color() {return RGB(Int( 0 , 256) , Int(0, 256) , Int(0 , 256));}
+		static T Find(const T list[]) {return list[randInt(size)];}
+		static RGB Color() {return RGB(Int(256) , Int(256) , Int(256));}
 	};   
 };
  

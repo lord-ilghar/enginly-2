@@ -13,6 +13,7 @@ class Test4 : public eng::Component {
 	eng::RGB color;
 	int32_t opacity;
 
+
 public:
 	void Init() override{
 		color = eng::Rand::Color();
@@ -55,11 +56,11 @@ public:
 	}
 
 	void Update() override {
-		if (eng::Input::MousePress(eng::Input::MouseButton::Right)) {
+		if (eng::Input::KeyPress(eng::Input::KeyBordButton::Enter)) {
 			
 			initializeObject({ 
-				(float)sf::Mouse::getPosition(*Parent->window).x ,
-				(float)sf::Mouse::getPosition(*Parent->window).y
+				100.f ,
+				100.f
 				}, size)	
 				->addComponent<eng::Transform>()
 				->addComponent<Test4>();

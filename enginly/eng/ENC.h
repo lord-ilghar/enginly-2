@@ -23,38 +23,54 @@ unsigned int inline getComponentTypeID() noexcept {
 	return typeID;
 }
 class Object;
-class ObjectManer;
+class ObjectManager;
 class Component;
 class Postion;
 
+class ObjectManager
+{
+public:
+
+	void Draw();
+	void Update(const float_t& deltaTime);
+	void Start();
+
+	ObjectManager(sf::RenderWindow* window,eng::Vec2i simulationDistance = eng::Vec2i( 200 , 200 )) :m_window(window) , m_simulationDistance(simulationDistance){};
+	Object& addObject(const eng::Vec2f& pos, const eng::Vec2f& size);
+	void refresh();
+
+	//setters and getters
+	void setsimulationDistance(const eng::Vec2i& sim) { m_simulationDistance = sim; }
+	int32_t ObjectsAmount() const { return m_objects.size(); }
+
+private:
+	sf::RenderWindow* m_window;
+	eng::Vec2i m_simulationDistance;
+	bool isAlive;
+	std::vector<std::unique_ptr<Object>> m_objects;
+};
 
 // object template
 class Object {
-private:
-	std::array<Component*, MaxComponents> m_componentsArray;
-	std::bitset<MaxComponents> m_componentCheck;
-	std::vector<std::unique_ptr<Component>> m_components;
-	std::unordered_map<std::string , bool> tags;
-	float_t deltaTime;
-	bool isActive = true;
 public:
-	ObjectManer* manager;
+	ObjectManager* manager;
 	sf::RenderWindow* window;
-	bool getIsActive() { return isActive; }
+	bool getIsActive() const { return isActive; }
 	void destroy();
 
 	void Update();
 	void Start();
 	void Draw();
 	void LightUpdate();
+	void FixedUpdate();
 
 	//seters & geters
-	void setTage(std::string newTag) {tags[newTag] = 1;}
-	bool checkTag(std::string tag) { return (tags.find(tag) != tags.end());}
-	float_t getDeltaTime() { return deltaTime; }
-	void setDeltaTime(float_t time) {deltaTime = time;}
+	void setTage(const std::string& newTag) { tags[newTag] = 1; }
+	bool checkTag(const std::string& tag) const { return (tags.find(tag) != tags.end()); }
+	float_t getDeltaTime() const { return deltaTime; }
+	void setDeltaTime(float_t const &time) { deltaTime = time; }
 
-	template <typename T , typename... Params>
+	template <typename T, typename... Params>
 	Object* addComponent(Params&&... params) {
 		T* c(new T(std::forward<Params>(params)...));
 		c->Parent = this;
@@ -65,53 +81,21 @@ public:
 		c->Init();
 		return this;
 	}
-		
+
 	template<typename T>
-	T& getComponent() {
+	T& getComponent() const {
 		auto ptr(m_componentsArray[getComponentTypeID<T>()]);
 		return *static_cast<T*>(ptr);
 	}
 	template<typename T>
-	bool hasComponent() {
-		return m_componentCheck[getComponentTypeID<T>()];
-	}
-};
-
-class ObjectManer
-{
+	bool hasComponent() const {return m_componentCheck[getComponentTypeID<T>()];}
 private:
-	sf::RenderWindow* m_window;
-	eng::Vec2i m_simulationDistance;
-	bool isAlive;
-
-
-public:
-
-	void Draw();
-	void Update(float_t deltaTime);
-	void Start();
-
-
-	ObjectManer(sf::RenderWindow* window, eng::Vec2i simulationDistance = { 200 , 200 }) :m_window(window) , m_simulationDistance(simulationDistance){};
-	Object& addObject(eng::Vec2f pos, eng::Vec2f size) {
-		Object* object = new Object();
-		std::unique_ptr<Object> uPtr{ object };
-		object->window = m_window;
-		object->manager = this;
-		m_objects.emplace_back(std::move(uPtr));
-		object->addComponent<Postion>(pos , size);
-		return *object;
-	}
-	void refresh() {
-		m_objects.erase(
-			std::remove_if(std::begin(m_objects), std::end(m_objects),
-				[](const std::unique_ptr<Object>& objects) { return !objects->getIsActive(); }
-			),// remove if
-			std::end(m_objects)
-		); // erase
-	}
-private:
-	std::vector<std::unique_ptr<Object>> m_objects;
+	std::array<Component*, MaxComponents> m_componentsArray;
+	std::bitset<MaxComponents> m_componentCheck;
+	std::vector<std::unique_ptr<Component>> m_components;
+	std::unordered_map<std::string, bool> tags;
+	float_t deltaTime;
+	bool isActive = true;
 };
 
 //Component Template
@@ -124,13 +108,13 @@ public:
 	virtual void Init() {}
 	virtual void Start() {}
 	virtual void Draw() {}
+	virtual void FixedUpdate(){}
+
 protected:
 	// Component utilites
-	int deltaTime() {return Parent->getDeltaTime();}
+	int deltaTime() const {return Parent->getDeltaTime();}
 	eng::Object* initializeObject(eng::Vec2f pos , eng::Vec2f size) {return &Parent->manager->addObject(pos , size);}
-	bool isParentInWindowVeiw();
-
-
+	bool isParentInWindowVeiw() const;
 	template<typename T>
 	T* getComponent() {return &Parent->getComponent<T>();}
 	void destroy() { Parent->destroy(); }

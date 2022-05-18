@@ -10,18 +10,17 @@
 #include "Input.h"
 #include "Rand.h"
 #include "Vector.h"
-
 #include <vector>
 
 namespace eng {
+	std::vector<std::string> split_str(const std::string& str, const char delim);
 	class Game {
 	private:
 		uint16_t m_windowW, m_windowH;
 		std::string m_title;
 		sf::RenderWindow* m_window;
-		ObjectManer* m_manger;
+		ObjectManager* m_manger;
 		float_t deltaTime = 0;
-
 		void Update();
 		void Start();
 		void Init();
@@ -30,6 +29,7 @@ namespace eng {
 		sf::RenderWindow& getWindow() { return *m_window; }
 		void run();
 		void setFPSLimit(uint8_t fpsLimit) {getWindow().setFramerateLimit(fpsLimit);}
-		ObjectManer* getmanger() const { return m_manger; }
+		ObjectManager* getmanger() const { return m_manger; }
+		~Game();
 	};
 };

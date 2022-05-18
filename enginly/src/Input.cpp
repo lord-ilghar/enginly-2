@@ -1,6 +1,6 @@
 #include "../eng/Input.h"
 
-int8_t eng::Input::getAxis(Axis axie)
+int8_t eng::Input::getAxis(const Axis axie)
 {
 	switch (axie)
 	{
@@ -22,12 +22,12 @@ int8_t eng::Input::getAxis(Axis axie)
 	}
 }
 
-bool eng::Input::KeyPress(sf::Keyboard::Key key)
+bool eng::Input::KeyPress(const eng::Input::KeyBordButton key)
 {
     return sf::Keyboard::isKeyPressed(key);
 }
 
-bool eng::Input::MousePress(MouseButton button)
+bool eng::Input::MousePress(const eng::Input::MouseButton button)
 {
 	return sf::Mouse::isButtonPressed(button);
 }
