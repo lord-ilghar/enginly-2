@@ -1,5 +1,5 @@
 #pragma once
-#include "../eng/ENC.h"
+#include "../eng/ECS.h"
 #include "../eng/components/Transform.h"
 #include "../eng/Input.h"
 #include "../eng/Rand.h"
@@ -10,7 +10,7 @@ class Test4 : public eng::Component {
 
 	sf::RectangleShape rc;
 	eng::Vec2f vloc;
-	eng::RGB color;
+	eng::Color::RGB color;
 	int32_t opacity;
 
 

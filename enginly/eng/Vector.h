@@ -2,7 +2,8 @@
 #include <cmath>
 #include "Rand.h"
 #include <math.h>
-
+#include <iostream>
+#include <string>
 #define PI 3.14159265
 
 namespace eng {
@@ -100,6 +101,7 @@ public:
 		return Vector2<T>(x + c, y + c);
 	}
 
+
 	// static functions
 	static Vector2<T> Up() { return Vector2<T>(0, 1); }
 	static Vector2<T> Down() { return Vector2<T>(0, -1); }
@@ -115,8 +117,11 @@ public:
 	//static T distance(Vector2<T> Vector , Vector2<T> otherVector) { return magnitude(otherVector - Vector); }
 	
 	// utility functions :
-	T magnitude() const { return std::sqrt(x * x + y * y); }
-	T distance(Vector2<T> otherVector) const { return magnitude(otherVector - *this); }
+	T magnitude(Vector2<T> vector) const {
+		return std::sqrt(vector.x * vector.x + vector.y * vector.y);
+	}
+	//T magnitude(Vector2<T> vect) const { return std::sqrt(x * x + y * y); }
+	T distance(const Vector2<T> const otherVector) const { return magnitude(otherVector - Vector2<T>(x , y)); }
 	T sqMagnitude() const { return (x * x + y * y); }
 	T heading() const  { return atan2(x, y) * 180 / PI; }
 	Vector2<T>& round() const { return Vector2<T>(std::round(x), std::round(y)); }
@@ -141,4 +146,12 @@ public:
 };
 typedef eng::Vector2<float> Vec2f;
 typedef eng::Vector2<int> Vec2i;
+/*
+template<typename T>
+std::ofstream& operator << (std::ofstream& stream, const Vector2<T>& vector) {
+	return stream << "X : " << vector.x << "-" << "Y: " << vector.y;
 }
+*/
+}
+
+

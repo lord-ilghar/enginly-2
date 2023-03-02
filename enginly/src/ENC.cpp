@@ -1,4 +1,4 @@
-#include "../eng/ENC.h"
+#include "../eng/ECS.h"
 #include "../debugTools/debug.h"
 
 
@@ -32,6 +32,13 @@ void eng::ObjectManager::Start()
 {
 	for (int i = 0; i < m_objects.size(); i++) {
 		m_objects[i]->Start();
+	}
+}
+
+void eng::ObjectManager::FixedUpdate()
+{
+	for (int i = 0; i < m_objects.size(); i++) {
+		m_objects[i]->FixedUpdate();
 	}
 }
 

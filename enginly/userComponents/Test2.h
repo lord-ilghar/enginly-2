@@ -1,5 +1,5 @@
 #pragma once
-#include "eng/ENC.h"
+#include "eng/ECS.h"
 #include "eng/components/AudioManager.h"
 #include "eng/components/Transform.h"
 #include "eng/components/SpriteRenderer.h"

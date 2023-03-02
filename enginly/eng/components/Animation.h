@@ -1,5 +1,5 @@
 #pragma once
-#include "../ENC.h"
+#include "../ECS.h"
 #include "SpriteRenderer.h"
 
 namespace eng {

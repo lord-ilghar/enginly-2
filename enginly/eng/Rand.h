@@ -17,7 +17,7 @@ namespace eng{
 
 		template<typename T , int size>
 		static T Find(const T list[]) {return list[randInt(size)];}
-		static RGB Color() {return RGB(Int(256) , Int(256) , Int(256));}
+		static Color::RGB Color() {return Color::RGB(Int(256) , Int(256) , Int(256) , 255);}
 	};   
 };
  

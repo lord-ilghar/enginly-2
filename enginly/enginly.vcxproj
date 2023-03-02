@@ -124,13 +124,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(SolutionDir)dep\sfml\include;$(SolutionDir)dep\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\imgui;$(SolutionDir)dep\box2d\include;$(SolutionDir)dep\sfml\include;$(SolutionDir)dep\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)dep\sfml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;opengl32.lib;box2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\box2d\lib\;$(SolutionDir)dep\sfml\lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="examples\Animation.cpp" />
+    <ClCompile Include="examples\CollisionBox.cpp" />
     <ClCompile Include="examples\Pong.cpp" />
     <ClCompile Include="examples\Removing_Objects.cpp" />
     <ClCompile Include="src\ENC.cpp" />
@@ -172,7 +173,10 @@
     <ClInclude Include="eng\components\AudioManager.h" />
     <ClInclude Include="debugTools\debug.h" />
     <ClInclude Include="eng\Color.h" />
+    <ClInclude Include="eng\components\Collision.h" />
+    <ClInclude Include="eng\components\ShapesRenderer.h" />
     <ClInclude Include="eng\components\SpriteRenderer.h" />
+    <ClInclude Include="eng\ECS.h" />
     <ClInclude Include="eng\ENC.h" />
     <ClInclude Include="eng\Game.h" />
     <ClInclude Include="eng\Time.h" />
@@ -200,6 +204,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="perf.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\1.jpg" />
+    <Image Include="res\2.png" />
+    <Image Include="res\testShapes.png" />
+    <Image Include="res\tiles.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\hit-pong.wav" />
+    <Media Include="res\score-pong.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

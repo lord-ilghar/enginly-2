@@ -1,5 +1,5 @@
 #pragma once
-#include "../ENC.h"
+#include "../ECS.h"
 #include "../eng/Input.h"
 
 namespace eng {
@@ -23,5 +23,8 @@ namespace eng {
 				v.x + x ,
 				v.y + y);
 		}
+		 
+		eng::Postion* getPostion() const { return pos; }
+
 	};
 };

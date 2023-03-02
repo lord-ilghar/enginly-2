@@ -5,7 +5,7 @@
 #include "imgui-SFML.h"
 #include "SFML/Graphics.hpp"
 #include "../eng/Vector.h"
-#include "../eng/ENC.h"
+#include "../eng/ECS.h"
 #include "Color.h"
 #include "Input.h"
 #include "Rand.h"

@@ -1,7 +1,7 @@
 #pragma once
 #include <cmath>
 #include <ctime>
-#include "../ENC.h"
+#include "../ECS.h"
 
 // NOTE : THIS Component is in its very early stages 
 // and you should`t use it

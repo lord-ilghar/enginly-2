@@ -54,6 +54,9 @@
     <ClCompile Include="examples\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="examples\CollisionBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="debugTools\debug.h">
@@ -143,8 +146,42 @@
     <ClInclude Include="userComponents\Test3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="eng\ECS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eng\components\ShapesRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="eng\components\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="perf.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\1.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\testShapes.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\tiles.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\hit-pong.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="res\score-pong.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

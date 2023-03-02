@@ -1,5 +1,5 @@
 #pragma once
-#include "../eng/ENC.h"
+#include "../eng/ECS.h"
 #include "../eng/Vector.h"
 #include "../eng/Rand.h"
 #include "../eng/components/Transform.h"

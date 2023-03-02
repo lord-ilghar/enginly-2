@@ -1,5 +1,5 @@
 #pragma once
-#include "../ENC.h"
+#include "../ECS.h"
 
 namespace eng {
 	class RectRenderer : public eng::Component

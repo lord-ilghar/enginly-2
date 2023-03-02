@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <sstream>
 #include "json.hpp"
-#include <thread>
 
 using namespace eng;
 
@@ -51,25 +50,16 @@ void eng::Game::run()
     //delta time calculation
     sf::Clock deltaClock_Imgui;
     sf::Clock deltaClock;
+    sf::Clock FixedTimeclock;
+
     float time[2] = { 0.f , 0.f };
 
-    // showing fps
-    sf::Font f;
-    sf::Text fpsText;
-    sf::RectangleShape textBack;
-
-    if (!f.loadFromFile("C:/Users/HP/Downloads/Compressed/imgui-master/imgui-master/misc/fonts/Roboto-Medium.ttf")) throw;
-    fpsText.setFillColor(sf::Color::White);
-    fpsText.setPosition(0, 0);
-    fpsText.setCharacterSize(20);
-    fpsText.setFont(f);
-    textBack.setFillColor(sf::Color::Black);
 
     // end init
     Start();
 #ifdef __DEBUG__
     int deltaTimeArrayIndex = 0;
-    int constexpr deltaTimeArraySize = 100;
+    constexpr int deltaTimeArraySize = 100;
     float deltaTimeGraph[deltaTimeArraySize];
 
 #endif // __DEBUG__
@@ -78,10 +68,12 @@ void eng::Game::run()
 
     while (getWindow().isOpen())
     {
-    textBack.setPosition(fpsText.getGlobalBounds().left, fpsText.getGlobalBounds().top);
-    textBack.setSize(sf::Vector2f(
-        fpsText.getGlobalBounds().width,
-        fpsText.getGlobalBounds().height));
+        if (FixedTimeclock.getElapsedTime().asSeconds() > 1 / 300) {
+           //TODO : add FIXED_Update
+           //m_manger->();
+
+        }
+
         sf::Event event;
         while (getWindow().pollEvent(event))
         {
@@ -94,12 +86,8 @@ void eng::Game::run()
         getWindow().clear(sf::Color::Black); // Color background
         time[1] = deltaClock.getElapsedTime().asSeconds();
         float fps = (1.f / ( time[1] - time[0]));
-        fpsText.setString("FPS:" + std::to_string((int)fps));
         deltaTime = (time[1] - time[0]);
         Update();
-        //m_manger->Draw();
-        getWindow().draw(textBack);
-        getWindow().draw(fpsText);
 #ifdef __DEBUG__
         // Delta time Graph
         if (!(deltaTimeArrayIndex >= deltaTimeArraySize)) deltaTimeGraph[deltaTimeArrayIndex] = deltaTime;

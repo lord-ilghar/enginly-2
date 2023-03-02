@@ -17,6 +17,8 @@ unsigned int inline getComponentID() {
 	return ID++;
 }
 
+//float_t DeltaTime;
+
 template<typename T>
 unsigned int inline getComponentTypeID() noexcept {
 	static unsigned int typeID = getComponentID();
@@ -31,11 +33,11 @@ class ObjectManager
 {
 public:
 
-	void Draw();
 	void Update(const float_t& deltaTime);
 	void Start();
+	void FixedUpdate();
 
-	ObjectManager(sf::RenderWindow* window,eng::Vec2i simulationDistance = eng::Vec2i( 200 , 200 )) :m_window(window) , m_simulationDistance(simulationDistance){};
+	ObjectManager(sf::RenderWindow* window, eng::Vec2i simulationDistance = eng::Vec2i( 200 , 200 )): m_window(window) , m_simulationDistance(simulationDistance){};
 	Object& addObject(const eng::Vec2f& pos, const eng::Vec2f& size);
 	void refresh();
 
@@ -53,6 +55,10 @@ private:
 // object template
 class Object {
 public:
+	Object() {
+
+	};
+
 	ObjectManager* manager;
 	sf::RenderWindow* window;
 	bool getIsActive() const { return isActive; }
@@ -112,7 +118,6 @@ public:
 
 protected:
 	// Component utilites
-	int deltaTime() const {return Parent->getDeltaTime();}
 	eng::Object* initializeObject(eng::Vec2f pos , eng::Vec2f size) {return &Parent->manager->addObject(pos , size);}
 	bool isParentInWindowVeiw() const;
 	template<typename T>
@@ -131,7 +136,7 @@ class Postion : public Component
 private:
 	eng::Vec2f postion;
 	eng::Vec2f size;
-	float rotaion;
+	float_t rotaion;
 public:
 	Postion(eng::Vec2f pos , eng::Vec2f size) : postion(pos) , size(size) , rotaion(0) {}
 	void setPostion(float x, float y) {
@@ -160,5 +165,14 @@ public:
 	eng::Vec2f getSize() const {
 		return size;
 	}
+
+	void setRotaion(float_t r) {
+		rotaion = r;
+	}
+
+	float_t getRotaion() const {
+		return rotaion;
+	}
+
 };
 };
