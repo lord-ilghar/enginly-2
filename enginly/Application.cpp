@@ -58,12 +58,21 @@ int main() {
 
 */
 
-/*
-int main() {
-	eng::Game* game = new eng::Game(720 , 480 , "GG");
-	eng::ObjectManager* manger =  game->getmanger();
-	manger->addObject({ 10 , 10 }, { 200 , 200 }).addComponent<eng::Rectangle>(eng::Color::RGB(100 , 10 , 200 , 255));
+int x, y;
+sf::RectangleShape rc;
+void Draw(sf::RenderWindow* win) {
+	rc.setFillColor(sf::Color::Blue);
+	x += 1;
+	y += 1;
+	rc.setSize(sf::Vector2f(100,100));
+	rc.setPosition(100 , 100);
+	win->draw(rc);
+}
 
+int main() {
+	eng::Game* game = new eng::Game(720, 480, "GG");
+	game->enableAdditionalFeatures(true);
+	game->setAdditionalDraw(Draw);
 	game->run();
 }
-*/
+

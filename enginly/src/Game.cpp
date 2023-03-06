@@ -32,12 +32,15 @@ void eng::Game::Update()
 
 void eng::Game::Start()
 {
+    if (OutSideLoop) {
+        (m_outSideStart)();
+    }
     m_manger->Start();
 }
 
 void eng::Game::Init()
 {
-    m_window = new  sf::RenderWindow(sf::VideoMode(m_windowW, m_windowH), m_title);
+    m_window = new sf::RenderWindow(sf::VideoMode(m_windowW, m_windowH), m_title);
     m_manger = new ObjectManager(&getWindow());
 }
 
@@ -115,7 +118,9 @@ void eng::Game::run()
 
         ImGui::EndMainMenuBar();
 #endif // __DEBUG__
-
+        if (OutSideLoop) {
+            (m_outSideDraw)(m_window);
+        }
         ImGui::SFML::Render(getWindow());
         getWindow().display();
         time[0] = time[1];
